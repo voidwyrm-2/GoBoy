@@ -1,0 +1,8 @@
+github.com/ebitengine/purego v0.7.1 h1:6/55d26lG3o9VCZX8lping+bZcmShseiqlh2bnUDiPA=
+github.com/ebitengine/purego v0.7.1/go.mod h1:ah1In8AOtksoNK6yk5z1HTJeUkC1Ez4Wk2idgGslMwQ=
+github.com/gen2brain/raylib-go/raylib v0.0.0-20240408130534-53f26d8a0802 h1:xsf4yTASYJRGyObi8hanG8otD9skzuxudyzbQZcr79M=
+github.com/gen2brain/raylib-go/raylib v0.0.0-20240408130534-53f26d8a0802/go.mod h1:P/hDjVwz/9fhR0ww3+umzDpDA7Bf7Tce4xNChHIEFqE=
+github.com/voidwyrm-2/npglib v0.0.0-20240509023513-df294a70eda8 h1:vKSR8RybPrZJPc41AU43/4oKjo/IM7WqpsaPyGEfeNQ=
+github.com/voidwyrm-2/npglib v0.0.0-20240509023513-df294a70eda8/go.mod h1:d6+4ZpIjTQdKHIEM8mpFY7iDTaf90Z+DFmSFDmVTZws=
+golang.org/x/sys v0.19.0 h1:q5f1RH2jigJ1MoAWp2KTp3gm5zAGFUTarQZ5U386+4o=
+golang.org/x/sys v0.19.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
