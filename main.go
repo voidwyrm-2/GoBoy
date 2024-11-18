@@ -51,6 +51,15 @@ func main() {
 	rl.InitWindow(windowX, windowY, "GoBoy")
 	defer rl.CloseWindow()
 
+	rl.InitAudioDevice()
+	defer rl.CloseAudioDevice()
+
+	var gbThemeMusic = rl.LoadMusicStream("assets/GoBoyTheme.mp3")
+	var gbThemeMusicPlayed = false
+	var gbThemeMusicStopped = false
+	//var gbThemeMusicLength = rl.GetMusicTimeLength(gbThemeMusic)
+	var gbThemeMusicTimeRemaining float32
+
 	ticks["Game"] = 0
 
 	boardSize, fps, initErrStr := loadedCart.Init(&ticks, &alarms)
@@ -75,6 +84,25 @@ func main() {
 	for { //!rl.WindowShouldClose() {
 
 		if loadBarPercent < 400 {
+
+			if !gbThemeMusicPlayed {
+				rl.PlayMusicStream(gbThemeMusic)
+				gbThemeMusicPlayed = true
+			} else {
+				if !gbThemeMusicStopped {
+					timeRemaining := fmt.Sprintf("%f", gbThemeMusicTimeRemaining)
+					if timeRemaining[len(timeRemaining)-3:] == "816" {
+						rl.StopMusicStream(gbThemeMusic)
+						gbThemeMusicStopped = true
+					}
+
+					rl.UpdateMusicStream(gbThemeMusic)
+					gbThemeMusicTimeRemaining = rl.GetMusicTimePlayed(gbThemeMusic)
+				}
+
+				//fmt.Printf("%f\n", gbThemeMusicLength)
+				//fmt.Printf("%f\n", gbThemeMusicTimeRemaining)
+			}
 
 			if rl.IsKeyPressed(rl.KeyEscape) {
 				fmt.Println("game was manually quit during loading")

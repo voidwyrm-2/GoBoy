@@ -105,6 +105,7 @@ type SpaceInvaders struct {
 	enemyColor      color.RGBA
 	bulletSpeed     int
 	enemySpeed      int
+	bulletCooldown  int
 	exitKey         int
 	hasLost         bool
 	hasWon          bool
@@ -121,8 +122,9 @@ func (crt *SpaceInvaders) Init(ticks *map[string]int, alarms *map[string]int) ([
 	crt.plColor = color.RGBA{150, 150, 255, 255}
 	crt.bulletColor = color.RGBA{155, 0, 0, 255}
 	crt.enemyColor = color.RGBA{10, 255, 20, 255}
-	crt.bulletSpeed = 6
-	crt.enemySpeed = 8
+	crt.bulletSpeed = 24
+	crt.enemySpeed = 32
+	crt.bulletCooldown = 120
 	crt.exitKey = rl.KeyEscape
 	crt.hasLost = false
 	crt.lossSprite = npg.Sprite{Size: [2]int{10, 10}}
@@ -171,7 +173,7 @@ func (crt *SpaceInvaders) Init(ticks *map[string]int, alarms *map[string]int) ([
 	tempAlarms["EnemyClock"] = crt.enemySpeed
 	*alarms = tempAlarms
 
-	return crt.boardSize, 15, ""
+	return crt.boardSize, 60, ""
 }
 
 func (crt *SpaceInvaders) Update(board *[][]color.RGBA, ticks *map[string]int, alarms *map[string]int) (int, string) {
@@ -262,7 +264,7 @@ func (crt *SpaceInvaders) Update(board *[][]color.RGBA, ticks *map[string]int, a
 		if rl.IsKeyPressed(rl.KeyUp) {
 			if mutAlarms["BulletCooldown"] == 0 {
 				crt.bullets[generateIDCode("b", 4)] = [2]int{crt.plX, crt.plY - 1}
-				mutAlarms["BulletCooldown"] = 30
+				mutAlarms["BulletCooldown"] = crt.bulletCooldown
 			}
 		}
 
